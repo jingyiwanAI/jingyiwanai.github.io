@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Jingyi WAN">
+
+
+
+
+
+<title>神经网络与深度学习：绪论 | Jingyi WAN</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">JINGYI WAN</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">JINGYI WAN</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">神经网络与深度学习：绪论</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Jingyi WAN</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">July 15, 2022&nbsp;&nbsp;13:15:31</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="Overview：了解深度学习"><a href="#Overview：了解深度学习" class="headerlink" title="Overview：了解深度学习"></a><strong>Overview：了解深度学习</strong></h1><ul>
+<li><p><u>深度学习是一个机器学习问题</u><br><br> 指从有限样例中通过算法总结出一般性的规律，并可以应用到新的未知的数据上。</p>
+</li>
+<li><p><u>深度学习采用的模型一般比较复杂</u><br><br> 指样本的原始输入到输出目标之间的数据流经过多个线性或非线性的组件。<br><br> 每个组件的贡献度分配问题关系到如何学习每个组件中的参数。</p>
+</li>
+<li><p><u>深度学习与神经网络的关系</u></p>
+<ul>
+<li>什么是神经网络<br>  <br> 一种可以比较好解决贡献度分配的模型<br>  <br> 可以看作信息从输入到输出的处理系统<br>  <br> 可以看作由一组参数控制的复杂函数<br>  <br> 其参数可以通过机器学习的方式来从数据中学习</li>
+<li>复杂神经网络的学习即深度学习<br>  <br> 神经网络模型一般比较复杂，从输入到输出的信息传递路径比较长，所以复杂神经网络的学习可以看成是一种深度的机器学习，即深度学习。</li>
+<li>深度学习可以采用不同的模型，神经网络只是其中一种</li>
+</ul>
+</li>
+</ul>
+<h1 id="关于人工智能"><a href="#关于人工智能" class="headerlink" title="关于人工智能"></a><strong>关于人工智能</strong></h1><ul>
+<li><p><u>人工智能的定义</u><br><br> 让机器具有人类的智能 </p>
+</li>
+<li><p><u>智能的定义</u><br><br> 图灵测试：一个人在不接触对方的情况下，通过一种特殊的方式和对方进行一系列的问答。如果在相当长时间内，他无法根据这些问题判断对方是人还是计算机，那么就可以认为这个计算机是智能的。</p>
+</li>
+<li><p><u>人工智能的研究范畴</u><br><br> 要使得计算机通过图灵测试，计算机就必须具有理解语言，学习，记忆，推理，决策等能力。目前人工智能的主要领域大致可分为以下几个方面：</p>
+<ul>
+<li>感知：语言信息处理，计算机视觉等</li>
+<li>学习：监督学习，无监督学习，强化学习等</li>
+<li>认知：知识表示，自然语言处理，推理，规划，决策等</li>
+</ul>
+</li>
+<li><p><u>人工智能流派</u></p>
+<ul>
+<li>符号主义</li>
+<li>连接主义</li>
+</ul>
+</li>
+</ul>
+<h1 id="从机器学习发展到深度学习"><a href="#从机器学习发展到深度学习" class="headerlink" title="从机器学习发展到深度学习"></a><strong>从机器学习发展到深度学习</strong></h1><ul>
+<li><p><u>机器学习的定义</u><br><br> 从有限样例中通过算法总结出一般性的规律，并可以应用到新的未知的数据上。</p>
+</li>
+<li><p><u>[<strong>浅层学习</strong>] 传统机器学习主要关注学习一个预测模型</u></p>
+<ul>
+<li><strong>数据的特征主要靠人工经验或特征转换方法来抽取，不涉及特征学习</strong></li>
+<li>一般流程：<ol>
+<li>将数据表示为一组特征<ul>
+<li>数据预处理：如数据清洗(去缺失，去冗余)和加工(数值缩放，归一化)</li>
+<li>特征提取：如图片提取边缘</li>
+<li>特征转换：如降维升维</li>
+</ul>
+</li>
+<li>特征输入到预测模型</li>
+<li>模型输出预测结果</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p><u>[<strong>表示学习</strong>] </u></p>
+<ul>
+<li><p>__自动学习出输入数据的有效特征，并提高机器学习模型的性能如准确率__，则这种学习称为表示学习。</p>
+</li>
+<li><p>表示学习的关键在于解决语义鸿沟的问题：指输入数据的底层特征和高层语义信息之间的不一致性和差异性。</p>
+</li>
+<li><p>什么是好的表示：</p>
+<ul>
+<li><p>需要具备的优点：</p>
+<ul>
+<li>很强的表示能力： 同样大小的向量能表示更多信息</li>
+<li>包含更高层的语义信息</li>
+<li>一般性：能比较容易迁移到其他任务上</li>
+</ul>
+</li>
+<li><p>局部表示(离散表示&#x2F;符号表示)：通常可以表示为one-hot向量的形式</p>
+<ul>
+<li>优点：<ul>
+<li>具有很好的解释性，有利于人工归纳和总结特征，并通过特征组合进行高效的特征工程。</li>
+<li>通过多种特征组合得到的表示向量通常是稀疏的二值向量，当用于线性模型时计算效率非常高。</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>one-hot向量的维数很高，且不能扩展。</li>
+<li>不同向量相似度都为0。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>分布式表示(分散式表示)：通常可以表示为低维的稠密向量</p>
+<ul>
+<li>表示能力优于局部表示</li>
+<li>向量维度一般都比较低</li>
+<li>不同向量之间的相似度也很容易计算</li>
+</ul>
+</li>
+<li><p>嵌入(embedding):</p>
+<ul>
+<li>指将一个度量空间的一些对象映射到另一个低维的度量空间中，并尽可能保持不同对象之间的拓扑关系。</li>
+<li>可以使用神经网络将高维的局部表示空间映射到一个低维的分布式表示空间。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>如何学习到好的表示：</p>
+<ul>
+<li>需要从底层特征开始，经过多步非线性转换才能得到。</li>
+<li>深层结构可以增加特征的重用性，从而指数级地增加表示能力。</li>
+<li>__表示学习的关键是构建具有<u>一定深度</u>的<u>多层次特征</u>表示__。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><u>[<strong>深度学习</strong>] </u>    </p>
+<ul>
+<li>深度学习是将原始的数据特征通过多步的特征转换得到一种特征表示，并进一步输入到预测函数得到最终结果。</li>
+<li>深度学习需要解决的关键问题是贡献度分配问题。</li>
+<li>目前深度学习采用的模型之遥时神经网络，因为神经网络模型可以通过误差范性传播方法比较好的解决贡献度分配问题。</li>
+</ul>
+</li>
+</ul>
+<p><em>Reference: <a target="_blank" rel="noopener" href="https://nndl.github.io/">https://nndl.github.io</a></em></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Jingyi WAN</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://jingyiwanai.github.io/2022/07/15/intro/">https://jingyiwanai.github.io/2022/07/15/intro/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2022/07/12/test/">About this website</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Jingyi WAN | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
