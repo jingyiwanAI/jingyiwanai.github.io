@@ -13,7 +13,7 @@
 
 
 
-<title>神经网络与深度学习：数学基础 | Jingyi WAN</title>
+<title>Stanford Seminar - Transformers United Tranformer Encoder-Decoder Architecture | Jingyi WAN</title>
 
 
 
@@ -196,7 +196,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">神经网络与深度学习：数学基础</h1>
+            <h1 class="post-title">Stanford Seminar - Transformers United Tranformer Encoder-Decoder Architecture</h1>
             
                 <div class="post-meta">
                     
@@ -205,7 +205,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">July 18, 2022&nbsp;&nbsp;15:55:57</a>
+                        Date: <a href="#">July 20, 2022&nbsp;&nbsp;15:44:01</a>
                         </span>
                     
                     
@@ -214,7 +214,28 @@
         </header>
 
         <div class="post-content">
-            <h1 id="概率"><a href="#概率" class="headerlink" title="概率"></a>概率</h1><p>概率的定义： 一个随机事件发生的可能性大小 <br><br>随机事件：<br><br>随机变量：<br></p>
+            <h1 id="6-Encoder-blocks-and-6-Decoder-blocks"><a href="#6-Encoder-blocks-and-6-Decoder-blocks" class="headerlink" title="6 Encoder blocks and 6 Decoder blocks"></a><strong>6 Encoder blocks and 6 Decoder blocks</strong></h1><ul>
+<li>Encoder doesn’t share parameters</li>
+<li>在两个子层间增加了attention层，该层有助于解码器能够关注到输入句子的相关部分，与 seq2seq model 的Attention作用相似</li>
+</ul>
+<h2 id="Encoder-block"><a href="#Encoder-block" class="headerlink" title="Encoder block"></a><strong>Encoder block</strong></h2><ul>
+<li>A self-attention layer followed by a feedforward layer.</li>
+<li>Each self-attention layer is followed by a layer norm.</li>
+<li>Each feedforward layer is followed by a layer norm.</li>
+<li>There are residual connections between encoder blocks.</li>
+</ul>
+<h2 id="Decoder-block"><a href="#Decoder-block" class="headerlink" title="Decoder block"></a><strong>Decoder block</strong></h2><ul>
+<li>Similar to encoder blocks, except have a 3rd layer, that performs multi-head attention on the output from the encoders.</li>
+<li>Masking is used to prevent positions looking ahead during self-attention.</li>
+<li>Decoder not only looks at the previous layer of the decoder, but also looks at the output of the encoder.</li>
+</ul>
+<h1 id="Advantages"><a href="#Advantages" class="headerlink" title="Advantages"></a><strong>Advantages</strong></h1><ul>
+<li>constant path length between any two positions in the sequence two positions, hence are better to model context in long sequences</li>
+<li>transformsers are better to parallelization, no sequential computation within a layer (see self-attention)</li>
+</ul>
+<h1 id="Drawbacks"><a href="#Drawbacks" class="headerlink" title="Drawbacks"></a><strong>Drawbacks</strong></h1><ul>
+<li>self-attention takes quadratic time and space (each token attends to all other tokens): Scaling them becomes an issue</li>
+</ul>
 
         </div>
 
@@ -229,7 +250,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="https://jingyiwanai.github.io/2022/07/18/math/">https://jingyiwanai.github.io/2022/07/18/math/</a></span>
+                        <span><a href="https://jingyiwanai.github.io/2022/07/20/transformer_5/">https://jingyiwanai.github.io/2022/07/20/transformer_5/</a></span>
                     </p>
                 
                 
@@ -262,10 +283,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2022/07/19/transformer_1/">Stanford Seminar - Transformers United Attention Timeline</a>
+                <a class="prev" rel="prev" href="/2022/07/20/transformer_6/">Stanford Seminar - Transformers United Tranformer Applications</a>
             
             
-            <a class="next" rel="next" href="/2022/07/16/chapter1/">神经网络与深度学习：机器学习概述</a>
+            <a class="next" rel="next" href="/2022/07/20/transformer_4/">Stanford Seminar - Transformers United Other ingredients of transformer</a>
             
         </section>
 

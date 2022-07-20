@@ -13,7 +13,7 @@
 
 
 
-<title>神经网络与深度学习：数学基础 | Jingyi WAN</title>
+<title>Stanford Seminar - Transformers United Self-Attention | Jingyi WAN</title>
 
 
 
@@ -196,7 +196,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">神经网络与深度学习：数学基础</h1>
+            <h1 class="post-title">Stanford Seminar - Transformers United Self-Attention</h1>
             
                 <div class="post-meta">
                     
@@ -205,7 +205,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">July 18, 2022&nbsp;&nbsp;15:55:57</a>
+                        Date: <a href="#">July 19, 2022&nbsp;&nbsp;21:41:38</a>
                         </span>
                     
                     
@@ -214,7 +214,41 @@
         </header>
 
         <div class="post-content">
-            <h1 id="概率"><a href="#概率" class="headerlink" title="概率"></a>概率</h1><p>概率的定义： 一个随机事件发生的可能性大小 <br><br>随机事件：<br><br>随机变量：<br></p>
+            <h1 id="Simple-Self-attention"><a href="#Simple-Self-attention" class="headerlink" title="Simple Self-attention"></a><strong>Simple Self-attention</strong></h1><p>Self-attention is the main building block of transformers.</p>
+<h2 id="Breakdown-the-self-attention-as-a-search-retrieval-problem"><a href="#Breakdown-the-self-attention-as-a-search-retrieval-problem" class="headerlink" title="Breakdown the self-attention as a search retrieval problem"></a><strong>Breakdown the self-attention as a search retrieval problem</strong></h2><!-- ![avatar](../figures/scaled_dot_product_attention.png) -->
+
+<p>Given a <strong>query</strong> <strong>[q]</strong>, find the set of <strong>keys</strong> <strong>[k]</strong> <u>most similar to q</u> and return the corresponding <strong>values</strong> <strong>[v]</strong>.<br></p>
+<ul>
+<li><strong>Query</strong>:</li>
+<li><strong>Keys</strong>:</li>
+<li><strong>Values</strong>:</li>
+</ul>
+<h2 id="Calculation-of-attention"><a href="#Calculation-of-attention" class="headerlink" title="Calculation of attention"></a><strong>Calculation of attention</strong></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Attention = \sum&#123;&#125;sim(q,k)*v</span><br><span class="line">In transformer: sim(q,k) = scaled dot-product (q,k)</span><br></pre></td></tr></table></figure>
+<ol>
+<li>Why scaled dot product?</li>
+</ol>
+<h1 id="Multi-head-Self-attention"><a href="#Multi-head-Self-attention" class="headerlink" title="Multi-head Self-attention"></a><strong>Multi-head Self-attention</strong></h1><p>self-attention is at every layer<br>self-attention is performed multiple times to learn multiple representations subspaces<br>each head ihave the power to look at different things and to learn different semantics</p>
+<p><em>Reference:<a target="_blank" rel="noopener" href="https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a">https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a</a></em></p>
+<h1 id="More-Details"><a href="#More-Details" class="headerlink" title="More Details"></a><strong>More Details</strong></h1><ul>
+<li>Step 1: You now have multiple inputs.</li>
+<li>Step 2: For each input, you will generated three different representations: query, key, value</li>
+<li>Step 3: Calculate attention scores using <strong>query</strong> and <strong>key</strong> for Input 1, same steps for all Input elements:<ul>
+<li>dot product (Input 1 query, keys of all Input(self-included)) </li>
+<li>softmax</li>
+<li>attention scores of Input 1 with all elements in the sequence</li>
+</ul>
+</li>
+<li>Step 4: Multiply <strong>attention scores</strong> with <strong>values</strong></li>
+<li>Step 5: Sum <strong>weighted values</strong> to get Output 1</li>
+</ul>
+<h1 id="Some-Thoughts"><a href="#Some-Thoughts" class="headerlink" title="Some Thoughts"></a><strong>Some Thoughts</strong></h1><ol>
+<li>What’s the difference between self-attention and attention?</li>
+</ol>
+<ul>
+<li>Attention related elements in a <strong>source sentence to a target</strong> sentence</li>
+<li>Self-attention is when your <strong>source and target are the same</strong>, it relates each elements within the sequence to another element in the sequence.</li>
+</ul>
+<p>2. </p>
 
         </div>
 
@@ -229,7 +263,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="https://jingyiwanai.github.io/2022/07/18/math/">https://jingyiwanai.github.io/2022/07/18/math/</a></span>
+                        <span><a href="https://jingyiwanai.github.io/2022/07/19/transformer_3/">https://jingyiwanai.github.io/2022/07/19/transformer_3/</a></span>
                     </p>
                 
                 
@@ -262,10 +296,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2022/07/19/transformer_1/">Stanford Seminar - Transformers United Attention Timeline</a>
+                <a class="prev" rel="prev" href="/2022/07/20/RNN/">RNN</a>
             
             
-            <a class="next" rel="next" href="/2022/07/16/chapter1/">神经网络与深度学习：机器学习概述</a>
+            <a class="next" rel="next" href="/2022/07/19/transformer_2/">Stanford Seminar - Transformers United Attention Mechanisms</a>
             
         </section>
 

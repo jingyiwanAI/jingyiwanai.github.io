@@ -13,7 +13,7 @@
 
 
 
-<title>神经网络与深度学习：数学基础 | Jingyi WAN</title>
+<title>Stanford Seminar - Transformers United Attention Mechanisms | Jingyi WAN</title>
 
 
 
@@ -196,7 +196,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">神经网络与深度学习：数学基础</h1>
+            <h1 class="post-title">Stanford Seminar - Transformers United Attention Mechanisms</h1>
             
                 <div class="post-meta">
                     
@@ -205,7 +205,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">July 18, 2022&nbsp;&nbsp;15:55:57</a>
+                        Date: <a href="#">July 19, 2022&nbsp;&nbsp;20:55:09</a>
                         </span>
                     
                     
@@ -214,7 +214,32 @@
         </header>
 
         <div class="post-content">
-            <h1 id="概率"><a href="#概率" class="headerlink" title="概率"></a>概率</h1><p>概率的定义： 一个随机事件发生的可能性大小 <br><br>随机事件：<br><br>随机变量：<br></p>
+            <h1 id="Basic-attention"><a href="#Basic-attention" class="headerlink" title="Basic attention"></a><strong>Basic attention</strong></h1><ul>
+<li><strong>Query</strong>: after attention, you want the query have the embedding</li>
+<li><strong>Keys</strong>:</li>
+<li><strong>Values</strong>: before attention, all the values you have</li>
+</ul>
+<h2 id="Variety-1-Hard-x2F-Soft-attention"><a href="#Variety-1-Hard-x2F-Soft-attention" class="headerlink" title="Variety 1: Hard &#x2F; Soft attention"></a><strong>Variety 1: Hard &#x2F; Soft attention</strong></h2><p>Attention was inspired by the process of importance of weighting of putting attention on different parts of an image. <br><br>For example, human focus more on the forground of image.</p>
+<ul>
+<li>Hard attention</li>
+<li>Soft attention</li>
+</ul>
+<h3 id="Soft-attention"><a href="#Soft-attention" class="headerlink" title="Soft attention"></a><strong>Soft attention</strong></h3><p>Example: Each pixel can be a weight between [0,1].<br><br>Cons: expensive computation</p>
+<h3 id="Hard-attention"><a href="#Hard-attention" class="headerlink" title="Hard attention"></a><strong>Hard attention</strong></h3><p>Example: Each pixel can be a weight of 0 or 1.<br><br>Pros: less computationally expensive<br><br>Cons: non-differentiable –&gt; hard to train</p>
+<h2 id="Variety-2-Local-x2F-Global-attention"><a href="#Variety-2-Local-x2F-Global-attention" class="headerlink" title="Variety 2: Local &#x2F; Global attention"></a><strong>Variety 2: Local &#x2F; Global attention</strong></h2><p><em>Reference:<a href="https://link.zhihu.com/?target=https://arxiv.org/abs/1508.04025">https://link.zhihu.com/?target=https%3A//arxiv.org/abs/1508.04025</a></em></p>
+<h3 id="Global-attention"><a href="#Global-attention" class="headerlink" title="Global attention"></a><strong>Global attention</strong></h3><p>Example: Element-wise multiply with each element in the whole sequence <br><br>Similar to soft-attention mechnism</p>
+<h3 id="Local-attention"><a href="#Local-attention" class="headerlink" title="Local attention"></a><strong>Local attention</strong></h3><p>Example:Element-wise multiply with each element in the setting “window” <br><br>Similar to the combination of local hard attention with global soft-attention</p>
+<h2 id="Some-Thought"><a href="#Some-Thought" class="headerlink" title="Some Thought"></a><strong>Some Thought</strong></h2><ol>
+<li>Why attention works?</li>
+</ol>
+<ul>
+<li>Less parameters</li>
+<li>high speed: not relevant to the input</li>
+<li>better performance: directly choose the most relevant high-level information</li>
+</ul>
+<ol start="2">
+<li>Why element-wise multiplication</li>
+</ol>
 
         </div>
 
@@ -229,7 +254,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="https://jingyiwanai.github.io/2022/07/18/math/">https://jingyiwanai.github.io/2022/07/18/math/</a></span>
+                        <span><a href="https://jingyiwanai.github.io/2022/07/19/transformer_2/">https://jingyiwanai.github.io/2022/07/19/transformer_2/</a></span>
                     </p>
                 
                 
@@ -262,10 +287,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2022/07/19/transformer_1/">Stanford Seminar - Transformers United Attention Timeline</a>
+                <a class="prev" rel="prev" href="/2022/07/19/transformer_3/">Stanford Seminar - Transformers United Self-Attention</a>
             
             
-            <a class="next" rel="next" href="/2022/07/16/chapter1/">神经网络与深度学习：机器学习概述</a>
+            <a class="next" rel="next" href="/2022/07/19/transformer_1/">Stanford Seminar - Transformers United Attention Timeline</a>
             
         </section>
 
